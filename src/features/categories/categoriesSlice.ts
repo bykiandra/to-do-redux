@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type Category = {
+export type Category = {
   name: string
   color: string
 }
