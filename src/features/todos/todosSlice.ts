@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { RootState } from '../../app/store'
+
 interface TodoSlice {
   todos: Todo[]
 }
@@ -27,5 +29,6 @@ export const todosSlice = createSlice({
   }
 })
 
+export const selectTodos = (state: RootState) => state.todos.todos
 export const { addTodo } = todosSlice.actions
 export default todosSlice.reducer

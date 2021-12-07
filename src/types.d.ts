@@ -9,3 +9,6 @@ type Category = {
   name: string
   color: string
 }
+
+type HandleChange = (text: ChangeEvent) => void
+type HandleSubmit = () => void

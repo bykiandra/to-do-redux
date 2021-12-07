@@ -1,40 +1,70 @@
-import { ChevronDownIcon, SmallAddIcon } from "@chakra-ui/icons"
-import { Box, Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react"
+import { ChevronDownIcon, SmallAddIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
+} from '@chakra-ui/react'
+import { useState } from 'react'
 
-const Categories = () => {
+interface Props {
+  title: string
+  showAll: boolean
+}
+
+const Categories = ({ title, showAll }: Props) => {
+  const [visibleText, setVisibleText] = useState<string | string[]>(title)
+
+  const menuDefault = showAll ? 'All' : 'None'
+
   return (
     <Menu>
-      <MenuButton as={Button} w='14rem' rightIcon={<ChevronDownIcon />}>
-        Categories
+      <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>
+        {visibleText}
       </MenuButton>
       <MenuList>
-        <MenuItem>
-          <Box mr={2} w='1rem' h='1rem' />
-          All
-        </MenuItem>
-        <MenuItem>
-          <Box
-            bgColor='blue.500'
-            borderRadius='lg'
-            mr={2}
-            w='1rem'
-            h='1rem'
-          />
-          Home
-        </MenuItem>
-        <MenuItem>
-          <Box
-            bgColor='teal.500'
-            borderRadius='lg'
-            mr={2}
-            w='1rem'
-            h='1rem'
-          />
-          Work
-        </MenuItem>
-        <MenuItem>
-          <SmallAddIcon /> New Category
-        </MenuItem>
+        <MenuOptionGroup
+          defaultValue={menuDefault}
+          onChange={(e) => setVisibleText(e)}
+        >
+          <MenuItemOption value={menuDefault}>
+            <Flex align='center'>
+              <Box mr={2} w='1rem' h='1rem' />
+              {menuDefault}
+            </Flex>
+          </MenuItemOption>
+          <MenuItemOption value='Home'>
+            <Flex align='center'>
+              <Box
+                bgColor='blue.500'
+                borderRadius='lg'
+                mr={2}
+                w='1rem'
+                h='1rem'
+              />
+              Home
+            </Flex>
+          </MenuItemOption>
+          <MenuItemOption value='Work'>
+            <Flex align='center'>
+              <Box
+                bgColor='teal.500'
+                borderRadius='lg'
+                mr={2}
+                w='1rem'
+                h='1rem'
+              />
+              Work
+            </Flex>
+          </MenuItemOption>
+          <MenuItemOption value='New'>
+            <SmallAddIcon /> New Category
+          </MenuItemOption>
+        </MenuOptionGroup>
       </MenuList>
     </Menu>
   )

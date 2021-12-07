@@ -1,8 +1,10 @@
 import {
   ChakraProvider,
   Container,
+  Flex,
   Grid,
   Heading,
+  Spacer,
   theme,
 } from '@chakra-ui/react'
 
@@ -14,9 +16,12 @@ const App = () => {
   return (
     <ChakraProvider theme={theme} resetCSS={true}>
       <Grid minW='100vw' align='center' p={5}>
-        <Heading>To Do App</Heading>
         <Container maxW='container.sm'>
-          <ActionButtons />
+          <Flex my={6}>
+            <Heading w='100%'>To Do App</Heading>
+            <Spacer />
+            <ActionButtons />
+          </Flex>
           <TodoList />
           <Footer />
         </Container>
