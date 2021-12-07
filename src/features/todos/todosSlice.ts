@@ -1,12 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import Category from '../categories/categoriesSlice'
-
-export type Todo = {
-  id: string, // date string
-  text: string,
-  category: typeof Category,
-  isComplete: boolean
-}
 
 interface TodoSlice {
   todos: Todo[]
