@@ -21,9 +21,17 @@ import Categories from '../features/categories/Categories'
 const ActionButtons = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [input, setInput] = useState<string>('')
+  const [category, setCategory] = useState<Category>({
+    name: 'None',
+    color: 'gray',
+  })
 
-  const handleChange: HandleChange = (e) => {
+  const handleInputChange: HandleChange = (e) => {
     setInput(e.target.value)
+  }
+
+  const handleCategoryChange: HandleChange = (e) => {
+    setCategory(e)
   }
 
   const handleSubmit: HandleSubmit = () => {
@@ -33,12 +41,9 @@ const ActionButtons = () => {
         payload: {
           id: Date.now(),
           text: input,
-          category: {
-            name: 'None',
-            color: 'gray'
-          },
-          isComplete: false
-        }
+          category: category,
+          isComplete: false,
+        },
       }
       store.dispatch(newTodo)
     }
@@ -53,7 +58,11 @@ const ActionButtons = () => {
           Add
         </Button>
         <Divider orientation='vertical' mr={2} />
-        <Categories title='Filter by category' showAll={true} />
+        <Categories
+          title='Filter by category'
+          showAll={true}
+          handleCategoryChange={handleCategoryChange}
+        />
       </InputGroup>
 
       <Modal isOpen={isOpen} onClose={onClose} isCentered>
@@ -64,14 +73,18 @@ const ActionButtons = () => {
           <ModalBody>
             <Input
               onChange={(e) => {
-                handleChange(e)
+                handleInputChange(e)
               }}
               placeholder='New to do text'
               isRequired
             />
           </ModalBody>
           <ModalFooter>
-            <Categories title='Select a category' showAll={false} />
+            <Categories
+              title='Select a category'
+              showAll={false}
+              handleCategoryChange={handleCategoryChange}
+            />
             <Spacer />
             <Button
               colorScheme='blue'

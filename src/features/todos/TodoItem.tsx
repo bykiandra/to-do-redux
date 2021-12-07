@@ -1,5 +1,7 @@
 import { Badge, Checkbox, Flex, Spacer } from '@chakra-ui/react'
 
+import store from '../../app/store'
+
 interface Props {
   todo: Todo
 }
@@ -12,6 +14,7 @@ const TodoItem = ({ todo }: Props) => {
       p={4}
       borderRadius='lg'
       _hover={{ bgColor: 'gray.100' }}
+      onClick={() => store.dispatch({ type: 'todos/onToggle', payload: todo })}
     >
       <Checkbox isChecked={todo.isComplete}>{todo.text}</Checkbox>
       <Spacer />

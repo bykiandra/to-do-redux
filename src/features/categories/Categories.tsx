@@ -14,12 +14,28 @@ import { useState } from 'react'
 interface Props {
   title: string
   showAll: boolean
+  handleCategoryChange: HandleChange
 }
 
-const Categories = ({ title, showAll }: Props) => {
+const Categories = ({ title, showAll, handleCategoryChange }: Props) => {
   const [visibleText, setVisibleText] = useState<string | string[]>(title)
 
   const menuDefault = showAll ? 'All' : 'None'
+
+  const categories = [
+    {
+      name: 'None',
+      color: 'gray',
+    },
+    {
+      name: 'Home',
+      color: 'blue',
+    },
+    {
+      name: 'Work',
+      color: 'teal',
+    },
+  ]
 
   return (
     <Menu>
@@ -29,7 +45,13 @@ const Categories = ({ title, showAll }: Props) => {
       <MenuList>
         <MenuOptionGroup
           defaultValue={menuDefault}
-          onChange={(e) => setVisibleText(e)}
+          onChange={(e) => {
+            setVisibleText(e)
+            const selected = categories.filter(
+              (category) => category.name === e
+            )
+            handleCategoryChange(selected[0])
+          }}
         >
           <MenuItemOption value={menuDefault}>
             <Flex align='center'>
