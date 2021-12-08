@@ -4,11 +4,11 @@ A to do app built using React and Redux.
 
 #### Still to do:
 
-[ ] Edit/remove to do items.
-[ ] Edit/remove categories.
-[ ] Get filter by category working.
-[ ] Have completed to do items automatically move to bottom of list.
+- [] Edit/remove to do items.
+- [] Edit/remove categories.
+- [] Get filter by category working.
+- [] Have completed to do items automatically move to bottom of list.
 
 ##### Maybe in the future:
 
-[ ] Ability to add notes to to do items.
+- [] Ability to add notes to to do items.
