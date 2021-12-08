@@ -16,7 +16,14 @@ const TodoItem = ({ todo }: Props) => {
       _hover={{ bgColor: 'gray.100' }}
       onClick={() => store.dispatch({ type: 'todos/onToggle', payload: todo })}
     >
-      <Checkbox isChecked={todo.isComplete}>{todo.text}</Checkbox>
+      <Checkbox
+        isChecked={todo.isComplete}
+        onFocus={() =>
+          store.dispatch({ type: 'todos/onToggle', payload: todo })
+        }
+      >
+        {todo.text}
+      </Checkbox>
       <Spacer />
       <Badge
         colorScheme={todo.category.color}

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { RootState } from '../../app/store'
 
 interface CategoriesSlice {
   categories: Category[]
@@ -24,5 +25,6 @@ export const categoriesSlice = createSlice({
   },
 })
 
+export const selectCategories = (state: RootState) => state.categories.categories
 export const { addCategory, removeCategory } = categoriesSlice.actions
 export default categoriesSlice.reducer
