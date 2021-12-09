@@ -1,15 +1,15 @@
 import {
+  Box,
   ChakraProvider,
   Container,
   Flex,
   Grid,
   Heading,
-  Spacer,
   theme,
 } from '@chakra-ui/react'
 
 import ActionButtons from './components/ActionButtons'
-import TodoList from './features/todos/TodoList'
+import TodoList from './components/todos/TodoList'
 import Footer from './components/Footer'
 
 const App = () => {
@@ -19,8 +19,9 @@ const App = () => {
         <Container maxW='container.sm'>
           <Flex my={6}>
             <Heading w='100%'>To Do App</Heading>
-            <Spacer />
-            <ActionButtons />
+            <Box>
+              <ActionButtons />
+            </Box>
           </Flex>
           <TodoList />
           <Footer />

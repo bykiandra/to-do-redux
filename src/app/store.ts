@@ -1,10 +1,8 @@
 import { createStore, combineReducers } from 'redux'
-import todosReducer from '../features/todos/todosSlice'
-import categoriesReducer from '../features/categories/categoriesSlice'
+import todosReducer from '../components/todos/todosSlice'
 
 const rootReducers = combineReducers({
-  todos: todosReducer,
-  categories: categoriesReducer
+  todos: todosReducer
 })
 
 const saveToLocalStorage = (state: RootState) => {

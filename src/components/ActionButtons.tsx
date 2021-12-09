@@ -1,6 +1,5 @@
 import {
   Button,
-  Divider,
   InputGroup,
   Modal,
   ModalOverlay,
@@ -11,27 +10,16 @@ import {
   ModalCloseButton,
   useDisclosure,
   Input,
-  Spacer,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import store from '../app/store'
 
-import Categories from '../features/categories/Categories'
-
 const ActionButtons = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [input, setInput] = useState<string>('')
-  const [category, setCategory] = useState<Category>({
-    name: 'None',
-    color: 'gray',
-  })
 
   const handleInputChange: HandleChange = (e) => {
     setInput(e.target.value)
-  }
-
-  const handleCategoryChange: HandleChange = (e) => {
-    setCategory(e)
   }
 
   const handleSubmit: HandleSubmit = () => {
@@ -41,7 +29,6 @@ const ActionButtons = () => {
         payload: {
           id: Date.now(),
           text: input,
-          category: category,
           isComplete: false,
         },
       }
@@ -57,15 +44,9 @@ const ActionButtons = () => {
         <Button w='6rem' mx={2} onClick={onOpen}>
           Add
         </Button>
-        <Divider orientation='vertical' mr={2} />
-        <Categories
-          title='Filter by category'
-          showAll={true}
-          handleCategoryChange={handleCategoryChange}
-        />
       </InputGroup>
 
-      <Modal isOpen={isOpen} onClose={onClose} isCentered>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Add New To Do</ModalHeader>
@@ -80,12 +61,6 @@ const ActionButtons = () => {
             />
           </ModalBody>
           <ModalFooter>
-            <Categories
-              title='Select a category'
-              showAll={false}
-              handleCategoryChange={handleCategoryChange}
-            />
-            <Spacer />
             <Button
               colorScheme='blue'
               variant='ghost'

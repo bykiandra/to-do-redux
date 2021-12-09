@@ -17,8 +17,15 @@ export const todosSlice = createSlice({
     addTodo: (state, action) => {
       state.todos.push(action.payload)
     },
+    editTodo: (state, action) => {
+      const todo = state.todos.find(item => item.id === action.payload.id)
+      if (todo !== undefined) {
+        const index = state.todos.indexOf(todo)
+        state.todos[index] = action.payload
+      }
+    },
     removeTodo: (state, action) => {
-      state.todos.filter(todo => todo.id !== action.payload.id)
+      state.todos = state.todos.filter(todo => todo.id !== action.payload.id)
     },
     onToggle: (state, action) => {
       const todo = state.todos.find(item => item.id === action.payload.id)
@@ -30,5 +37,4 @@ export const todosSlice = createSlice({
 })
 
 export const selectTodos = (state: RootState) => state.todos.todos
-export const { addTodo } = todosSlice.actions
 export default todosSlice.reducer
