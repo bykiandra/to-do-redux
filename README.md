@@ -1,4 +1,4 @@
-# To Do Redux (work in progress)
+# To Do Redux
 
 A to do app built using React and Redux.
 
